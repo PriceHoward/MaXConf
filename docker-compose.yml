@@ -3,6 +3,7 @@ version: "3.9"
 services:
   node-backend:
     build: .
+    #Opening ports for backend to 3000.
     ports:
       - "3000:3000"
     env_file:
@@ -12,9 +13,11 @@ services:
 
   mysql:
     image: mysql:8.0
+    #Logging into the DB based on root and the password supplied from the .env
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: ejpdb
+    #Opening DB at 3306
     ports:
       - "3306:3306"
     volumes:
@@ -24,6 +27,7 @@ services:
     image: nginx:alpine
     volumes:
       - ./frontend:/usr/share/nginx/html:ro
+    #Opening frontend at 8080
     ports:
       - "8080:80"
 
